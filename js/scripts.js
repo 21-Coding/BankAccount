@@ -1,7 +1,8 @@
 // Business Logic
 
 function UserInfo() {
-  this.details = []
+  this.details = [],
+  this.currentId = 0
 }
 
 UserInfo.prototype.addDetails = function(detail) {
@@ -14,6 +15,15 @@ function Details(name, balance) {
   this.balance = balance
 }
 
+function displayUserDetails(detailsToDisplay) {
+  var detailList = $("ul#users-and-balances");
+  var htmlForUserInfo = "";
+  detailsToDisplay.details.forEach(function(detail) {
+    htmlForUserInfo += "<li id=" + detail.id + ">" + "Name: " + detail.name + "<br>" + "Balance: " + detail.balance + "</li>";
+  })
+  detailList.html(htmlForUserInfo);
+}
+
 //User Interface Logic
 var userInfo = new UserInfo();
 
@@ -23,9 +33,8 @@ $(document).ready(function() {
     var name = $("input#name").val();
     var initialDeposit = $("input#initial-deposit").val();
     var newDetail = new Details(name, initialDeposit);
-    console.log(newDetail);
     userInfo.addDetails(newDetail);
-    console.log(userInfo.addDetails(newDetail));
+    displayUserDetails(userInfo);
 
 
   })
