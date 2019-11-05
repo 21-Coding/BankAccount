@@ -3,12 +3,13 @@
 function UserInfo() {
   this.details = [],
   this.currentId = 0
+  console.log(this.details);
 }
 
 UserInfo.prototype.addDetails = function(detail) {
   detail.id = this.assignId();
   this.details.push(detail);
-  console.log(this.details);
+  // console.log(this.details);
 
 }
 
@@ -34,9 +35,11 @@ UserInfo.prototype.assignId = function() {
 
 
 
-function modifiedBalance(balance, newBalance) {
-  return
+function modifiedBalance(balance, amount) {
+  return balance + newBalance;
+
 }
+
 
 //User Interface Logic
 var userInfo = new UserInfo();
@@ -60,9 +63,9 @@ $(document).ready(function() {
     event.preventDefault();
 
     var amount = parseInt($("input#amount").val());
-    console.log(typeof amount);
     $("ul#users-and-balances").html("");
       displayUserDetails(userInfo);
+      console.log(userInfo.details);
 
 
 
