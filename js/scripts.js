@@ -1,3 +1,5 @@
+// Business Logic
+
 function UserInfo() {
   this.details = []
 }
@@ -6,19 +8,29 @@ UserInfo.prototype.addDetails = function(detail) {
   this.details.push(detail);
 }
 
-function Details(firstName, lastName, balance) {
-  this.firstName = firstName,
-  this.lastName = lastName,
+
+function Details(name, balance) {
+  this.name = name,
   this.balance = balance
 }
 
-Details.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
-}
+//User Interface Logic
+var userInfo = new UserInfo();
+
+$(document).ready(function() {
+  $("form#initial-form").submit(function(event){
+    event.preventDefault();
+    var name = $("input#name").val();
+    var initialDeposit = $("input#initial-deposit").val();
+    var newDetail = new Details(name, initialDeposit);
+    console.log(newDetail);
+    userInfo.addDetails(newDetail);
+    console.log(userInfo.addDetails(newDetail));
 
 
-var user = new UserInfo();
-var details = new Details("Ada", "Lovelace", "503-555-0100");
-var details2 = new Details("Grace", "Hopper", "503-555-0199");
-user.addDetails(details);
-user.addDetails(details2);
+  })
+  $("form#balance-change-form").submit(function(event){
+    event.preventDefault();
+
+  })
+})

@@ -9,7 +9,7 @@
     <title>Bank Account</title>
   </head>
   <body class="container">
-    <form id="form" class="">
+    <form id="initial-form" class="">
       <div class="jumbotron">
         <div class="register">
           <h3>Register a new account:</h3>
@@ -17,8 +17,8 @@
           <input id="name" type="text" name="" value="">
 
           <h3>Initial Deposit: </h3>
-          <label for="initial-deposit">Name</label>
-          <input id="initial-deposit" type="text" name="" value="">
+          <label for="initial-deposit">Ammount</label>
+          <input id="initial-deposit" type="number" name="" value="">
           <button id="register" class="btn btn-warning"type="submit" name="button">Submit</button>
         </div>
 
@@ -26,25 +26,20 @@
     </form>
 
 
-    <form class="">
+    <form id="balance-change-form" class="">
       <div class="jumbotron">
-
-      <h3>Deposit or Withdraw: </h3>
-      <div class="deposit-withdraw">
-      <label for="initial-deposit">Amount</label>
-      <input id="initial-deposit" type="text" name="" value="">
-      <button id="register" class="btn btn-warning"type="submit" name="button">Submit</button>
+        <h3>Deposit or Withdraw: </h3>
+        <div class="deposit-withdraw">
+        <label for="initial-deposit">Amount</label>
+        <input id="initial-deposit" type="number" name="" value="">
+        <button id="register" class="btn btn-warning"type="submit" name="button">Submit</button>
+        </div>
       </div>
-    </div>
-
     </form>
-
-
-
 
       <div class="sidebar">
         <div class="current-accounts">
-          <ul>
+          <ul id="users-and-balances">
             <li>User<span id="balance"></span></li>
             <li>User<span id="balance2"></span></li>
             <li>User<span id="balance3"></span></li>
