@@ -6,7 +6,10 @@ function UserInfo() {
 }
 
 UserInfo.prototype.addDetails = function(detail) {
+  detail.id = this.assignId();
   this.details.push(detail);
+  console.log(this.details);
+
 }
 
 
@@ -24,6 +27,17 @@ function displayUserDetails(detailsToDisplay) {
   detailList.html(htmlForUserInfo);
 }
 
+UserInfo.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+}
+
+
+
+function modifiedBalance(balance, newBalance) {
+  return
+}
+
 //User Interface Logic
 var userInfo = new UserInfo();
 
@@ -31,15 +45,29 @@ $(document).ready(function() {
   $("form#initial-form").submit(function(event){
     event.preventDefault();
     var name = $("input#name").val();
-    var initialDeposit = $("input#initial-deposit").val();
+    var initialDeposit = parseInt($("input#initial-deposit").val());
     var newDetail = new Details(name, initialDeposit);
     userInfo.addDetails(newDetail);
     displayUserDetails(userInfo);
 
 
   })
+
+
+
+
   $("form#balance-change-form").submit(function(event){
     event.preventDefault();
+
+    var amount = parseInt($("input#amount").val());
+    console.log(typeof amount);
+    $("ul#users-and-balances").html("");
+      displayUserDetails(userInfo);
+
+
+
+
+
 
   })
 })
