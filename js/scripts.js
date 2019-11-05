@@ -33,13 +33,40 @@ UserInfo.prototype.assignId = function() {
   return this.currentId;
 }
 
-
-
-function modifiedBalance(balance, amount) {
-  return balance + newBalance;
-
+function returnUserBalance (idNumber) {
+  for (i = 0; i < userInfo.details.length; i++) {
+    if (idNumber === userInfo.details[i].id) {
+      return userInfo.details[i].balance;
+    } else {
+      return false;
+    }
+  }
 }
 
+function returnUserIndex (idNumber) {
+  for (i = 0; i < userInfo.details.length; i++) {
+    if (idNumber === userInfo.details[i].id) {
+      return i;
+    } else {
+      return false;
+    }
+  }
+}
+
+function modifiedBalance(balance, newBalance) {
+  return balance + newBalance;
+}
+
+function onClick() {
+  $("ul#users-and-balances").on("click", "li", function() {
+    return this.id
+  });
+  $("#buttons").on("click", ".selectbutton", function() {
+    UserInfo.methodHere(this.id);
+    displayUserDetails(userInfo);
+
+  });
+};
 
 //User Interface Logic
 var userInfo = new UserInfo();
@@ -52,25 +79,18 @@ $(document).ready(function() {
     var newDetail = new Details(name, initialDeposit);
     userInfo.addDetails(newDetail);
     displayUserDetails(userInfo);
-
-
   })
-
-
-
 
   $("form#balance-change-form").submit(function(event){
     event.preventDefault();
-
     var amount = parseInt($("input#amount").val());
+    var whatUserId = $("input#whatUserId").val();
+    var newBalance = modifiedBalance(returnUserBalance(whatUserId), amount);
+    console.log(typeof returnUserIndex(whatUserId));
+    userInfo.details[returnUserIndex(whatUserId)].balance = newBalance;
     $("ul#users-and-balances").html("");
-      displayUserDetails(userInfo);
-      console.log(userInfo.details);
-
-
-
-
-
-
+    displayUserDetails(userInfo);
   })
+
+
 })
